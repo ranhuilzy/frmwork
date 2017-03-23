@@ -1,0 +1,8 @@
+group 'com.frmwrk'
+version '1.0-SNAPSHOT'
+dependencies {
+    compile group: 'com.alibaba', name: 'druid', version: '${alibaba_druid}'
+    compile group: 'com.github.pagehelper', name: 'pagehelper', version: '${pagehelper_version}'
+    compile group: 'org.mybatis', name: 'mybatis', version: '${mybatis_version}'
+    compile group: 'org.mybatis', name: 'mybatis-spring', version: '${mybatis_spring_version}'
+}

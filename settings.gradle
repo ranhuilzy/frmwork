@@ -1,0 +1,5 @@
+rootProject.name = 'frmwork'
+include 'james-frmwrk'
+rootProject.children.each { childProject ->
+    childProject.name =childProject.name
+}

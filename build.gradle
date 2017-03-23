@@ -1,0 +1,46 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url msxfRepo }
+        maven { url msxfMvnUrl}
+        maven { url mvnrepositoryUrl}
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    }
+}
+
+configurations.all {
+    //设置jdk的版本
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+configure(subprojects) { project ->
+    repositories{
+        mavenLocal()
+        maven { url msxfRepo }
+        maven { url msxfMvnUrl}
+        maven { url mvnrepositoryUrl}
+    }
+    group = 'com.udcs'
+    version '1.0-SNAPSHOT'
+    configurations {
+        all*.exclude group: 'commons-logging', module: 'commons-logging'
+    }
+}
+
+configure(subprojects) {
+    apply plugin: 'idea'
+    apply plugin: 'spring-boot'
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+    jar {
+        manifest {
+            attributes("Implementation-Title": "Gradle")
+        }
+    }
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
+}
